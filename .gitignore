@@ -403,3 +403,4 @@ FodyWeavers.xsd
 # Terraform
 .terraform/
 .terraform*
+terraform.tfstate.d/
