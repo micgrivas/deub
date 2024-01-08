@@ -9,11 +9,6 @@ variable "vpc_id" {
   default = "The ID from aws_vpc.main.id"
 } 
 
-variable "ami_id" {
-  description = "AMI ID for the instances."
-  type        = string
-}
-
 variable "ami_name" {
   description = "Name for the AMI, for the AMI creation."
   type        = string
@@ -23,6 +18,11 @@ variable "instance_type" {
   description = "Type of the instances, e.g. t2.micro."
   type        = string
   default     = "t2.micro"
+}
+
+variable "temp_instance_subnet"{
+  description = "The ID of the subnect, where the temporary EC2 will initiate, to make the AMI."
+  type        = string
 }
 
 variable "key_name" {

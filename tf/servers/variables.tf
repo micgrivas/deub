@@ -9,13 +9,19 @@ variable "vpc_id" {
   default = "The ID from aws_vpc.main.id"
 } 
 
-variable "ami_id" {
-  description = "AMI ID for the instances."
-  type        = string
+variable "subnets_private" {
+  description = "The private subnets where components will deploy."
+  type        = list
 }
 
-variable "ami_name" {
-  description = "Name for the AMI, for the AMI creation."
+
+variable "subnets_public" {
+  description = "The subnets with access to Internet (public) that will be used, for LB."
+  type        = list
+}
+
+variable "ami_id" {
+  description = "AMI ID for the instances."
   type        = string
 }
 
@@ -42,9 +48,3 @@ variable "secret_key" {
   type        = string
   default     = "AWS SECRET KEY should be read by some secrets manager, or use better mechanisms"
 }
-
-variable "lb_subnets" {
-  description = "The IDs of the public subnets, where LB will serve"
-  type        = list
-}
-

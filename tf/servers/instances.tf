@@ -29,10 +29,7 @@ resource "aws_autoscaling_group" "nginx_asg" {
     min_healthy_percentage = 50
     max_healthy_percentage = 120
   }  
-  vpc_zone_identifier = [
-    aws_subnet.private_subnet_1.id,
-    aws_subnet.private_subnet_2.id
-  ]
+  vpc_zone_identifier = var.subnets_private[*]
   target_group_arns = [aws_lb_target_group.nginx_target_group.arn]
   launch_template {
     id      = aws_launch_template.nginx_launch_template.id

@@ -4,16 +4,6 @@ variable "aws_region" {
   default     = "eu-central-1"
 }
 
-variable "vpc_id" {
-  description = "The ID of the VPC to use"
-  default = "The ID from aws_vpc.main.id"
-} 
-
-variable "ami_id" {
-  description = "AMI ID for the instances."
-  type        = string
-}
-
 variable "ami_name" {
   description = "Name for the AMI, for the AMI creation."
   type        = string
@@ -41,9 +31,4 @@ variable "secret_key" {
   description = "AWS secret to access the instance"
   type        = string
   default     = "AWS SECRET KEY should be read by some secrets manager, or use better mechanisms"
-}
-
-variable "docker_container" {
-  description = "Docker container name to run on the EC2 instance."
-  type        = string
 }

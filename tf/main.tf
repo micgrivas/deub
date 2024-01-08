@@ -21,10 +21,10 @@ terraform {
 }
 
 module "generics" {
-  source           = "./generics
+  source           = "./generics"
   access_key       = var.access_key
   secret_key       = var.secret_key
-  region           = var.aws_region  
+  aws_region           = var.aws_region  
   vpc_cidr         = "10.1.0.0/16"
   subnets_private  = [ "10.1.10.0/23", "10.1.12.0/23" ]
   subnets_public   = [ "10.1.0.0/23", "10.1.2.0/23" ]
@@ -35,8 +35,9 @@ module "ami" {
   vpc_id           = module.generics.vpc_id
   access_key       = var.access_key 
   secret_key       = var.secret_key   
-  region           = var.aws_region  
+  aws_region       = var.aws_region  
   key_name         = var.key_name  
+  temp_instance_subnet = module.generics.subnets_public[0]
   instance_type    = var.instance_type
   ami_name         = "nginx_docker_ami"
 }
@@ -46,7 +47,8 @@ module "servers" {
   vpc_id           = module.generics.vpc_id
   access_key       = var.access_key 
   secret_key       = var.secret_key   
-  region           = var.aws_region 
+  aws_region       = var.aws_region 
   ami_id           = module.ami.ami_id
-  lb_subnets       = [ module.generics.subnets_public[*] ]
+  subnets_public   = module.generics.subnets_public[*]
+  subnets_private  = module.generics.subnets_private[*]
 }

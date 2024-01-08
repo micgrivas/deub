@@ -4,7 +4,7 @@ resource "aws_lb" "nginx_alb" {
   enable_deletion_protection = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.ec2_secgrp.id]
-  subnets = var.lb_subnets
+  subnets = var.subnets_public
 }
 
 resource "aws_lb_target_group" "nginx_target_group" {
@@ -33,9 +33,4 @@ resource "aws_lb_listener" "nginx_alb_listener" {
     target_group_arn = aws_lb_target_group.nginx_target_group.arn
     type             = "forward"
   }
-}
-
-resource "aws_lb_target_group_attachment" "nginx_target_group_attachment" {
-  target_group_arn = aws_lb_target_group.nginx_target_group.arn
-  target_id        = aws_instance.nginx_instance.*.id
 }

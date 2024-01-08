@@ -65,7 +65,7 @@ The `main.tf` includes a call to all necessary modules for a whole system to sta
 
 ```
 $ terraform workspace select dev
-$ terraform plan --var-file="dev.tfvars -out=dev.plan
+$ terraform plan --var-file=dev.tfvars -out=dev.plan
 $ terraform apply dev.plan
 ```
 
