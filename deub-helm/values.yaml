@@ -8,7 +8,7 @@ image:
   repository: nginxdemos/hello
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
   allowPrivilegeEscalation: true
   # The port that will be used in the container - the nginxdemos/hello uses a fixed port 80
   containerPort: 80
